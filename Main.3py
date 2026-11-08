@@ -1,0 +1,47 @@
+import random
+
+def play_rps():
+    print("Welcome to Rock, Paper, Scissors with Score Tracker!")
+    choices = ["rock", "paper", "scissors"]
+    
+    # Initialize score variables
+    user_score = 0
+    computer_score = 0
+    ties = 0
+    
+    while True:
+        user_choice = input("Choose rock, paper, or scissors (or type 'quit' to exit): ").lower()
+        
+        if user_choice == 'quit':
+            print("\n--- Final Scoreboard ---")
+            print(f"Your Wins: {user_score}")
+            print(f"Computer Wins: {computer_score}")
+            print(f"Ties: {ties}")
+            print("Thanks for playing!")
+            break
+            
+        if user_choice not in choices:
+            print("Invalid choice! Please try again.\n")
+            continue
+            
+        computer_choice = random.choice(choices)
+        print(f"Computer chose: {computer_choice}")
+        
+        # Determine winner & update respective score
+        if user_choice == computer_choice:
+            print("It's a tie! 🤝")
+            ties += 1
+        elif (user_choice == "rock" and computer_choice == "scissors") or \
+             (user_choice == "paper" and computer_choice == "rock") or \
+             (user_choice == "scissors" and computer_choice == "paper"):
+            print("🎉 You win this round!")
+            user_score += 1
+        else:
+            print("💻 Computer wins this round!")
+            computer_score += 1
+            
+        # Display current scores after every round
+        print(f"📊 Current Score -> You: {user_score} | Computer: {computer_score} | Ties: {ties}\n")
+
+if __name__ == "__main__":
+    play_rps()
